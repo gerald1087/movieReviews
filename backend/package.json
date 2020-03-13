@@ -11,6 +11,12 @@
   "dependencies": {
     "pg": "^7.18.2",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.5"
+    "sequelize": "^5.21.5",
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "pg-promise": "^10.3.1"
   }
 }
