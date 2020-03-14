@@ -1,16 +1,14 @@
 import React from 'react';
-import Header from './components/Header';
+import './App.css';
 
+import MovieSearch from "./MovieSearch"
 
-class App extends React.Component {
-
-    render() {   
-    return (
-        <div className="App">
-          <Header />
-        </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <MovieSearch/>
+    </div>
+  );
 }
 
 export default App;
