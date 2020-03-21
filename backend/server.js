@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> master
-=======
->>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 require('dotenv').config();
 
 const config = {
@@ -23,15 +16,7 @@ const config = {
 //     password: process.env.DB_PASS,
 
 // }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
-
->>>>>>> master
-=======
-
->>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -39,11 +24,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
+
 
 const db = require('./models');
 const Users = db.user;
@@ -215,11 +196,7 @@ console.log(req.body);
 const pgp = require('pg-promise')();
 const Sequelize = require('sequelize')
 
-<<<<<<< HEAD
->>>>>>> master
 
-=======
->>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 const db = require('./models');
 const Users = db.user;
 const Comments = db.comments;
@@ -243,31 +220,7 @@ const { passportLoginRoute, passportJWTStrategy } = require('./middleware/passpo
  
 const app = express();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
-app.use(express.static('public'));
 
-=======
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cors());
-// app.use(cookieParser());
-
-
-// const CommentsModel = require('./models/comments');
-// const UserModel = require('./models/user');
-// const Movie_ReviewModel = require('./models/movie_review');
-
-// const Users = UserModel(sequelize, Sequelize);
-// const Movie_Reviews = Movie_ReviewModel(sequelize, Sequelize);
-// const Comments = CommentsModel(sequelize, Sequelize);
->>>>>>> master
-
-=======
->>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 Comments.belongsTo(Users, {foreignKey: 'user_id'});
 Users.hasMany(Comments, {foreignKey: 'user_id'});
 // Movie_Reviews.belongsTo(Users, {foreignKey: 'user_id'});
@@ -525,53 +478,6 @@ app.delete('/api/comments/:id', function (req, res) {
         });
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-//USERS
-//GET all Users /WORKING
-app.get('/api/users', function (req, res) {
-
-    Users.findAll().then((results) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(results));
-    });
-});
-
-//Get 1 User /WORKING
-app.get('/api/users/:id', function (req, res) {
-
-    let id = req.params.id;
-    
-    Users.findOne({ where: {id: id} }).then((results) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(results));
-    }).catch(function (e) {
-        console.log(e);
-        res.status(434).send('error retrieving user info');
-    })
-});
-
-//Delete a User /WORKING
-app.delete('/api/deleteprofile/:id', (req, res) => {
-
-    let userId = req.params.id
-    
-        Users.destroy({ where: { id: userId } }).then(function (user) {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(user));
-        }).catch(function (e) {
-            console.log(e, "server error message")
-            res.status(434).send('unable to delete user')
-        })
-    
-    });
-
->>>>>>> master
-=======
-
->>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
  //MOVIE REVIEWS
  //GET All Movie Reviews /WORKING   
  app.get('/api/movie_reviews', function (req, res) {
@@ -657,17 +563,8 @@ app.delete('/api/deletereview/:id', (req, res) => {
 const port = process.env.PORT || 3001;
 app.listen(port, () => { console.log(`Movie Club API is running. app listening on port ${port}`); });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-// app.listen(3005);
-// console.log('Movie Club is LIVE, 3005');
-=======
-app.listen(3005);
-console.log('Movie Club is LIVE, 3005');
 
->>>>>>> master
-=======
 // app.listen(3005);
 // console.log('Movie Club is LIVE, 3005');
 
->>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
+
