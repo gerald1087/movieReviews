@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import Button from '@material-ui/core/Button';
 
 export default class SearchResults extends Component {
 
@@ -8,6 +10,27 @@ export default class SearchResults extends Component {
             results: this.props.results
         }
     }
+
+    handleClick(e) {
+        e.preventDefault()
+        var apiBaseUrl = "http://localhost:3005/api/";
+        var payload = {
+            title: this.props.title,
+            image: this.props.image,
+            year: this.props.year
+        }
+        console.log(payload)
+        axios.post(apiBaseUrl + 'movie_reviews', payload)
+            .then(response => {
+                if (response.status === 200) {
+                    alert('Success!')
+                    window.location = '/reviews'
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+
     render() {
 
         return (
@@ -20,11 +43,11 @@ export default class SearchResults extends Component {
         <p className="card-text">{this.props.year}</p>
         <p className="card-text">{this.props.genre}</p>
         <p className="card-text">{this.props.plot}</p>
-
-
-<button> to "Create Review Host"</button>
-
-                                {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
+        <div>
+                        <Button variant="outlined" color="secondary" type="submit" onClick={(event) => this.handleClick(event)} >
+                            Add to List
+                        </Button>
+                    </div>
                             </div>
 </div>
                     </div>
