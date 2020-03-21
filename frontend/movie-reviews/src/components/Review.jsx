@@ -38,9 +38,9 @@ class App extends Component {
 
                     <MoviesReviews></MoviesReviews>
                 <Comment></Comment>
-                    This section is for the comment box.
+               
 
-                    <Button size="small"onClick={() => history.push('/profile')}>Go Home</Button>
+                    <Button size="small"onClick={() => history.push('/search')}>Go Home</Button>
                     </div>
                     </div>
         
