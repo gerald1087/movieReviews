@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> master
+=======
+>>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 require('dotenv').config();
 
 const config = {
@@ -21,10 +24,14 @@ const config = {
 
 // }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> master
+=======
+
+>>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -33,7 +40,10 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 
 const db = require('./models');
 const Users = db.user;
@@ -205,8 +215,11 @@ console.log(req.body);
 const pgp = require('pg-promise')();
 const Sequelize = require('sequelize')
 
+<<<<<<< HEAD
 >>>>>>> master
 
+=======
+>>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 const db = require('./models');
 const Users = db.user;
 const Comments = db.comments;
@@ -231,6 +244,7 @@ const { passportLoginRoute, passportJWTStrategy } = require('./middleware/passpo
 const app = express();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
@@ -252,6 +266,8 @@ app.use(express.static('public'));
 // const Comments = CommentsModel(sequelize, Sequelize);
 >>>>>>> master
 
+=======
+>>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
 Comments.belongsTo(Users, {foreignKey: 'user_id'});
 Users.hasMany(Comments, {foreignKey: 'user_id'});
 // Movie_Reviews.belongsTo(Users, {foreignKey: 'user_id'});
@@ -510,6 +526,7 @@ app.delete('/api/comments/:id', function (req, res) {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 //USERS
@@ -552,6 +569,9 @@ app.delete('/api/deleteprofile/:id', (req, res) => {
     });
 
 >>>>>>> master
+=======
+
+>>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
  //MOVIE REVIEWS
  //GET All Movie Reviews /WORKING   
  app.get('/api/movie_reviews', function (req, res) {
@@ -638,6 +658,7 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => { console.log(`Movie Club API is running. app listening on port ${port}`); });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // app.listen(3005);
 // console.log('Movie Club is LIVE, 3005');
 =======
@@ -645,3 +666,8 @@ app.listen(3005);
 console.log('Movie Club is LIVE, 3005');
 
 >>>>>>> master
+=======
+// app.listen(3005);
+// console.log('Movie Club is LIVE, 3005');
+
+>>>>>>> 7327af81a32f4d1cdec797baf714c92a021afc22
