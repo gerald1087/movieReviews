@@ -9,7 +9,7 @@ const cors = require('cors');
 const db = require('./models');
 const User = db.user;
 const Comments = db.comments;
-const Movie_Reviews = db.movie_review;
+const Movie_Reviews = db.reviews;
 
 const app = express();
 
@@ -90,7 +90,7 @@ app.post('/api/movie_reviews', function (req, res) {
         image: req.body.image,
         year: req.body.year
     };
-    MovieReviews.create(data).then(function (post) {
+    Movie_Reviews.create(data).then(function (post) {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(post));
     }).catch(function (e) {
@@ -101,7 +101,7 @@ app.post('/api/movie_reviews', function (req, res) {
 
 // GET MOVIES FROM REVIEW TABLE --WORKS
 app.get('/api/movie_reviews', function (req, res) {
-    MovieReviews.findAll().then((results) => {
+    Movie_Reviews.findAll().then((results) => {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(results));
     }).catch(function (e) {
