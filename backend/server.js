@@ -7,7 +7,6 @@ const config = {
     database: 'movie_review',
     user: 'postgres'
 };
-
 //env config below
 // const config = {
     
@@ -18,8 +17,6 @@ const config = {
 //     password: process.env.DB_PASS,
 
 // }
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -118,82 +115,82 @@ console.log(req.body);
 
 });
 
-// // API update a target user's info
-// app.put('/api/users/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+// API update a target user's info
+app.put('/api/users/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
 
-//     const data = {
+    const data = {
 
-//         id: req.params.id,
-//         f_name: req.body.f_name.trim(),
-//         l_name: req.body.l_name.trim(),
-//         email: req.body.email.toLowerCase().trim(),
-//         phone: req.body.phone,
-//         password: req.body.password.trim(),
-//         admin: req.body.admin
+        id: req.params.id,
+        f_name: req.body.f_name.trim(),
+        l_name: req.body.l_name.trim(),
+        email: req.body.email.toLowerCase().trim(),
+        phone: req.body.phone,
+        password: req.body.password.trim(),
+        admin: req.body.admin
 
-//     };
+    };
 
-//     Users.findOne({ where: { id: data.id } }).then(user => {
+    Users.findOne({ where: { id: data.id } }).then(user => {
 
-//         if (data.password != null) {
+        if (data.password != null) {
 
-//             var salt = bcrypt.genSaltSync(10);
-//             var hash = bcrypt.hashSync(data.password, salt);
-//             data.password = hash;
+            var salt = bcrypt.genSaltSync(10);
+            var hash = bcrypt.hashSync(data.password, salt);
+            data.password = hash;
 
-//         }
+        }
 
-//         user.update({
+        user.update({
 
-//             f_name: data.f_name,
-//             l_name: data.l_name,
-//             email: data.email,
-//             phone: data.phone,
-//             password: data.password,
-//             admin: data.admin
+            f_name: data.f_name,
+            l_name: data.l_name,
+            email: data.email,
+            phone: data.phone,
+            password: data.password,
+            admin: data.admin
 
-//         }).then(function (newData) {
-//             res.setHeader('Content-Type', 'application/json');
-//             res.end(JSON.stringify(newData));
-//         }).catch(function (e) {
-//             res.status(434).send('unable to update User')
-//         })
+        }).then(function (newData) {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(newData));
+        }).catch(function (e) {
+            res.status(434).send('unable to update User')
+        })
 
-//     }).catch(function (e) {
-//         console.log(e);
-//         res.status(434).send(`unable to find User ${data.id}`)
+    }).catch(function (e) {
+        console.log(e);
+        res.status(434).send(`unable to find User ${data.id}`)
 
-//     })
+    })
 
-// });
+});
 
-// // API delete target User
-// app.delete('/api/users/:id', (req, res) => {
+// API delete target User
+app.delete('/api/users/:id', (req, res) => {
 
-//     const id = req.params.id;
+    const id = req.params.id;
 
-//     Users.findOne({ where: { id: id } }).then(user => {
+    Users.findOne({ where: { id: id } }).then(user => {
 
-//         user.destroy().then(() => {
+        user.destroy().then(() => {
 
-//             res.setHeader('Content-Type', 'application/json');
-//             res.end(JSON.stringify(user));
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(user));
 
-//         }).catch((e) => {
+        }).catch((e) => {
 
-//             console.log(e);
-//             res.status(434).send('unable to delete User')
+            console.log(e);
+            res.status(434).send('unable to delete User')
 
-//         })
+        })
 
-//     }).catch((e) => {
+    }).catch((e) => {
 
-//         console.log(e);
-//         res.status(434).send('error retrieving info on target User');
+        console.log(e);
+        res.status(434).send('error retrieving info on target User');
 
-//     })
+    })
 
-// });
+});
 
 const pgp = require('pg-promise')();
 const Sequelize = require('sequelize')
@@ -329,46 +326,6 @@ app.delete('/api/comments/:id', function (req, res) {
         });
 });
 
-
-//USERS
-//GET all Users /WORKING
-app.get('/api/users', function (req, res) {
-
-    Users.findAll().then((results) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(results));
-    });
-});
-
-//Get 1 User /WORKING
-app.get('/api/users/:id', function (req, res) {
-
-    let id = req.params.id;
-    
-    Users.findOne({ where: {id: id} }).then((results) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(results));
-    }).catch(function (e) {
-        console.log(e);
-        res.status(434).send('error retrieving user info');
-    })
-});
-
-//Delete a User /WORKING
-app.delete('/api/deleteprofile/:id', (req, res) => {
-
-    let userId = req.params.id
-    
-        Users.destroy({ where: { id: userId } }).then(function (user) {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(user));
-        }).catch(function (e) {
-            console.log(e, "server error message")
-            res.status(434).send('unable to delete user')
-        })
-    
-    });
-
  //MOVIE REVIEWS
  //GET All Movie Reviews /WORKING   
  app.get('/api/movie_reviews', function (req, res) {
@@ -454,6 +411,6 @@ app.delete('/api/deletereview/:id', (req, res) => {
 const port = process.env.PORT || 3001;
 app.listen(port, () => { console.log(`Movie Club API is running. app listening on port ${port}`); });
 
-app.listen(3005);
-console.log('Movie Club is LIVE, 3005');
+// app.listen(3005);
+// console.log('Movie Club is LIVE, 3005');
 

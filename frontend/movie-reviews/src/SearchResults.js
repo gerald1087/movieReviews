@@ -20,6 +20,8 @@ export default class SearchResults extends Component {
         <p className="card-text">{this.props.year}</p>
         <p className="card-text">{this.props.genre}</p>
         <p className="card-text">{this.props.plot}</p>
+
+<button> to "Create Review Host"</button>
                                 {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
                             </div>
 </div>
