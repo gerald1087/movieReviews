@@ -27,8 +27,8 @@ export default class MoviesReviews extends Component {
                             <div key={index} className="card" style={{ width: '18rem' }}>
                                 <img src={result.image} className="card-img-top" alt="..." />
                                 <div className="card-body">
-                        <h5 className="card-title">{}</h5>
-                                    <p className="card-text"></p>
+                        <h5 className="card-title">{result.title}</h5>
+                        <p className="card-text">{result.year}</p>
                                     {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
                                 </div>
                             </div>
