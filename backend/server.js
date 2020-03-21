@@ -31,7 +31,7 @@ const cookieParser = require('cookie-parser');
 const db = require('./models');
 const Users = db.user;
 const Comments = db.comments;
-const MovieReviews = db.movie_review;
+const Movie_Reviews = db.movie_review;
 
 // load passport configuration middleware
 const { passportLoginRoute, passportJWTStrategy } = require('./middleware/passport-config');
@@ -194,10 +194,10 @@ console.log(req.body);
 //     })
 
 // });
-const cookieParser = require('cookie-parser');
+
 const pgp = require('pg-promise')();
 const Sequelize = require('sequelize')
-const app = express();
+
 
 
 const sequelize = new Sequelize('movie_review', 'postgres', '', {
@@ -214,19 +214,19 @@ const sequelize = new Sequelize('movie_review', 'postgres', '', {
 })
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
-app.use(cookieParser());
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(cors());
+// app.use(cookieParser());
 
 
-const CommentsModel = require('./models/comments');
-const UserModel = require('./models/user');
-const Movie_ReviewModel = require('./models/movie_review');
+// const CommentsModel = require('./models/comments');
+// const UserModel = require('./models/user');
+// const Movie_ReviewModel = require('./models/movie_review');
 
-const Users = UserModel(sequelize, Sequelize);
-const Movie_Reviews = Movie_ReviewModel(sequelize, Sequelize);
-const Comments = CommentsModel(sequelize, Sequelize);
+// const Users = UserModel(sequelize, Sequelize);
+// const Movie_Reviews = Movie_ReviewModel(sequelize, Sequelize);
+// const Comments = CommentsModel(sequelize, Sequelize);
 
 Comments.belongsTo(Users, {foreignKey: 'user_id'});
 Users.hasMany(Comments, {foreignKey: 'user_id'});
@@ -272,6 +272,22 @@ app.get('/api/comments/user/:id', function (req, res) {
         });
 });
 
+//GET comments by movie review ID for comment box 
+//UNTESTED sql q
+
+app.get('/api/comments/moviereview/:id', function (req, res) {
+    let id = req.params.id;
+
+    db.query('SELECT * FROM comments JOIN movie_reviews on comments.moviereview_id = movie_reviews.id Join users on comments.user_id = users.id'
+    )
+        .then((results) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(results));
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+});
 //POST Comments //Getting 434 message, currently
 app.post('/api/comments', function (req, res) {
 
@@ -296,7 +312,7 @@ app.post('/api/comments', function (req, res) {
     // } else {
     res.status(434).send('Logged user, movie and a comment is required to leave a comment')
     // }
-});
+}});
 
 //DELETE 1 Comment /WORKING
 app.delete('/api/comments/:id', function (req, res) {
