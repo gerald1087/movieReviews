@@ -3,7 +3,7 @@ import axios from 'axios';
 import CommentBox from './CommentBox';
 
 
-class Comment extends React.Component {
+export default class Comment extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -37,7 +37,8 @@ class Comment extends React.Component {
         newItem
       ]
     })
-
+  }
+    componentDidMount() {
     var apiBaseUrl = "http://localhost:3005/api/comments";
         var payload = {
             id: this.state.id,
@@ -53,8 +54,7 @@ class Comment extends React.Component {
             });
             console.log("values", this.state.user_id, this.state.moviereview_id, this.state.comment_date);
   }
-  componentDidMount() {
-        }
+      
   
 
   render() {
@@ -79,7 +79,4 @@ class Comment extends React.Component {
     );
   }
 }
-
-
-export default Comment;
 

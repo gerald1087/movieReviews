@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
- class CommentBox extends React.Component {
+export default class CommentBox extends React.Component {
     render() {
         return (
             <div>
@@ -9,4 +9,4 @@ import React, { Component } from 'react'
         )
     }
 }
-export default CommentBox
+

@@ -4,6 +4,7 @@ import { Switch, Route, Router } from "react-router-dom";
 import MovieSearch from "./MovieSearch"
 import Comment from "./components/Comment"
 import CommentBox from "./components/CommentBox"
+import MoviesReviews from '../MoviesReviews';
 
 //material ui
 // import { withStyles } from '@material-ui/core/styles';
@@ -35,8 +36,8 @@ class App extends Component {
                     <p className="card-text">{this.props.genre}</p>
                     <p className="card-text">{this.props.plot}</p>
 
-                    This section is for the comment input line
-
+                    <MoviesReviews></MoviesReviews>
+                <Comment></Comment>
                     This section is for the comment box.
 
                     <Button size="small"onClick={() => history.push('/profile')}>Go Home</Button>
