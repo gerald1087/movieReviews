@@ -38,15 +38,13 @@ class Comment extends React.Component {
       ]
     })
 
-    var apiBaseUrl = "http://localhost:3005/api/";
+    var apiBaseUrl = "http://localhost:3005/api/comments";
         var payload = {
             id: this.state.id,
             user_id: this.state.user_id,
-            moviereview_id: this.state.moviereview_id,
-            comment_date: this.state.comment_date
         }
         console.log(payload)
-        axios.post(apiBaseUrl + "comments", payload.id)
+        axios.post(apiBaseUrl + "moviereview", payload.moviereview_id)
             .then(function (response) {
                 console.log(response);
                 alert("Comment post failed!")
