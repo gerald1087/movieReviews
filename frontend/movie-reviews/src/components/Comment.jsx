@@ -37,7 +37,8 @@ class Comment extends React.Component {
         newItem
       ]
     })
-
+  }
+    componentDidMount() {
     var apiBaseUrl = "http://localhost:3005/api/comments";
         var payload = {
             id: this.state.id,
@@ -53,9 +54,6 @@ class Comment extends React.Component {
             });
             console.log("values", this.state.user_id, this.state.moviereview_id, this.state.comment_date);
   }
-  componentDidMount() {
-        }
-  
 
   render() {
     return (
