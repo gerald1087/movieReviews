@@ -1,45 +1,15 @@
 require('dotenv').config();
 
-const config = {
-
-    host: process.env.DB_HOST,
-    port: 5432,
-    database: process.env.DB_NAME,
-    username: process.env.DB_USER,
-};
-
-var express = require('express');
-var bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-var cors = require('cors');
-var cookieParser = require('cookie-parser');
-const pgp = require('pg-promise')();
-const db = pgp(config);
-
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const connectionString = `postgres://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`
-const sequelize = new Sequelize(process.env.DATABASE_URL || connectionString, {
-
-    dialect: 'postgres',
-    pool: {
-        max: 10,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
-
-});
-
-const CommentsModel = require('./models/comments');
-const UserModel = require('./models/user');
-const MovieReviewsModel = require('./models/reviews');
-
-const User = UserModel(sequelize, Sequelize)
-const Comments = CommentsModel(sequelize, Sequelize)
-const MovieReviews = MovieReviewsModel(sequelize, Sequelize)
+const db = require('./models');
+const User = db.user;
+const Comments = db.comments;
+const Movie_Reviews = db.movie_review;
 
 const app = express();
 
@@ -47,6 +17,8 @@ app.use(express());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static('public'));
 
 // REGISTER ROUTE --WORKS
 app.post('/api/register', function (req, res) {
