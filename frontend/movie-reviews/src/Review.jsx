@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
 import { Switch, Route, Router } from "react-router-dom";
+import Header from './components/Header'
 import MovieSearch from "./MovieSearch"
 import Comment from "./components/Comment"
 import CommentBox from "./components/CommentBox"
-import MoviesReviews from '../MoviesReviews';
+import MoviesReviews from './MoviesReviews';
+import Header from './components/Header';
 
 //material ui
 // import { withStyles } from '@material-ui/core/styles';
@@ -15,7 +17,7 @@ import MoviesReviews from '../MoviesReviews';
 // import Typography from '@material-ui/core/Typography';
 
 
-class App extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +29,8 @@ class App extends Component {
     }
     render() { 
         return (
-           
+            <div>
+           <Header></Header>
             <div className="card" style={{width: '18rem'}}>
             <img src={this.props.image} className="card-img-top" alt="could not load" />
                 <div className="card-body">
@@ -36,11 +39,12 @@ class App extends Component {
                     <p className="card-text">{this.props.genre}</p>
                     <p className="card-text">{this.props.plot}</p>
 
-                    <MoviesReviews></MoviesReviews>
+                <MoviesReviews></MoviesReviews>
                 <Comment></Comment>
                
 
                     <Button size="small"onClick={() => history.push('/search')}>Go Home</Button>
+                    </div>
                     </div>
                     </div>
         
@@ -49,4 +53,3 @@ class App extends Component {
 }
 }
 
-export default Review;

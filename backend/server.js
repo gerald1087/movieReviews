@@ -163,67 +163,92 @@ app.delete('/api/deletereview/:id', (req, res) => {
 });
 
 //COMMENTS
-//GET all Comments
+//GET all Comments //Working latest
 app.get('/api/comments', function (req, res) {
 
-    comments.findAll({include: [Users]}).then((results) => {
+    Comments.findAll().then((results) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(results));
+    }).catch(function (e) {
+        console.log(e);
+        res.status(434).send('error retrieving movies');
+    })
+});
+
+//GET 1 Comment //WORKING latest
+app.get('/api/comments/:id', function (req, res) {
+    let id = req.params.id;
+  
+
+    Comments.findOne({ where: { id: id } })
+        .then((results) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(results));
+        })
+        .catch((e) => {
+            console.error(e);
+        });
+});
+
+//GET comments by user / No longer works LATEST
+app.get('/api/comments/user/:id', function (req, res) {
+    let id = req.params.user_id;
+
+    Comments.findAll({include: [User]}).then((results) => {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(results));
     });
 
 });
+//     db.query('SELECT * FROM comments JOIN users on comments.user_id = users.id WHERE users.id=$1', [id])
+//         .then((results) => {
+//             res.setHeader('Content-Type', 'application/json');
+//             res.end(JSON.stringify(results));
+//         })
+//         .catch((e) => {
+//             console.error(e);
+//         });
+// });
 
-//GET 1 Comment
-app.get('/api/comments/:id', function (req, res) {
+//GET comments by review //Not working latest***** comment box
+//Need to fix ***************************************************
+app.get('/api/comments/movie_reviews/:id', function (req, res) {
     let id = req.params.id;
 
-    db.one("SELECT * FROM comments WHERE id=$1", [id])
-        .then((results) => {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(results));
-        })
-        .catch((e) => {
-            console.error(e);
-        });
+    Comments.findAll({include:[Movie-review] [Users]}).then((results) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(results));
+    });
+
 });
+    // db.query('SELECT * FROM comments JOIN movie_reviews on comments.moviereview_id = movie_reviews.id Join users on comments.user_id = users.id" WHERE movie_reviews.id=$1', [id])
+    //     .then((results) => {
+    //         res.setHeader('Content-Type', 'application/json');
+    //         res.end(JSON.stringify(results));
+    //     })
+    //     .catch((e) => {
+    //         console.error(e);
+    //     });
+// });
 
-//GET comments by user
-app.get('/api/comments/user/:id', function (req, res) {
-    let id = req.params.id;
-
-    db.query('SELECT * FROM comments JOIN users on comments.user_id = users.id WHERE users.id=$1', [id])
-        .then((results) => {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(results));
-        })
-        .catch((e) => {
-            console.error(e);
-        });
-});
-
-//POST Comments
+//POST Comments /Working LATEST
 app.post('/api/comments', function (req, res) {
 
     let data = {
         user_id: req.body.user_id,
         moviereview_id: req.body.moviereview_id,
-        comment: req.session.comment,
+        comment: req.body.comment,
         comment_date: req.body.comment_date
     };
-
-    if(data.title && data.body && data.user_id) {
-        comments.create(data).then(function (post) {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(post));
-        }).catch(function(e){
-            res.status(434).send('Unable to create the post')
-        });
-    } else {
-    res.status(434).send('Title, body and username is required to making a post')
-    }
+    
+    Comments.create(data).then(function (post) {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(post));
+    }).catch(function (e) {
+        res.status(434).send('Unable to create the post')
+    });
 });
-
-//DELETE 1 Comment 
+//DELETE 1 Comment / No longer working latest
 app.delete('/api/comments/:id', function (req, res) {
     let id = req.params.id;
     let query = `DELETE FROM comments WHERE id=${id}`;
@@ -239,21 +264,21 @@ app.delete('/api/comments/:id', function (req, res) {
 });
 
 //USERS
-//GET all Users
+//GET all Users //WORKING latest
 app.get('/api/users', function (req, res) {
 
-    Users.findAll().then((results) => {
+    User.findAll().then((results) => {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(results));
     });
 });
 
-//Get 1 User
+//Get 1 User //WORKING latest
 app.get('/api/users/:id', function (req, res) {
 
     let id = req.params.id;
     
-    Users.findOne({ where: {id: id} }).then((results) => {
+    User.findOne({ where: {id: id} }).then((results) => {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(results));
     }).catch(function (e) {
@@ -262,12 +287,12 @@ app.get('/api/users/:id', function (req, res) {
     })
 });
 
-//Delete a User
+//Delete a User //No longer working latest
 app.delete('/api/deleteprofile/:id', (req, res) => {
 
     let userId = req.params.id
     
-        Users.destroy({ where: { id: userId } }).then(function (user) {
+        User.destroy({ where: { id: users.id } }).then(function (user) {
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(user));
         }).catch(function (e) {

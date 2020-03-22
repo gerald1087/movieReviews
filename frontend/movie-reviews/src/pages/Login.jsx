@@ -28,7 +28,7 @@ class Login extends Component {
     }
     this.Auth.login(user)
       .then(res => {
-        window.alert('Logged In Successfully!');
+        // window.alert('Logged In Successfully!');
         this.props.history.replace('/Profile');
       })
       .catch(err => {

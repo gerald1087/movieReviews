@@ -22,19 +22,24 @@ class Header extends Component {
 
         return (
             <div>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+                    <NavLink to="/search" className="navbar-brand">Home</NavLink>
+                    
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                    <NavLink to="/" className="navbar-brand">Home</NavLink>
+                    <NavLink to="/reviews" className="navbar-brand">Reviews</NavLink>
+                    
+                    </nav>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav">
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <NavLink to="/Register" className="nav-link"> Register </NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/Login" className="nav-link"> Login </NavLink>
-                            </li>
+                            </li> */}
                             <li className="nav-item">
                                 <NavLink to="/Profile" className="nav-link"> Profile </NavLink>
                             </li>
