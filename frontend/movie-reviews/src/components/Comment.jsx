@@ -3,7 +3,7 @@ import axios from 'axios';
 import CommentBox from './CommentBox';
 
 
-class Comment extends React.Component {
+export default class Comment extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -55,6 +55,7 @@ class Comment extends React.Component {
             console.log("values", this.state.user_id, this.state.moviereview_id, this.state.comment_date);
   }
 
+
   render() {
     return (
       <div className="App">
@@ -77,7 +78,4 @@ class Comment extends React.Component {
     );
   }
 }
-
-
-export default Comment;
 

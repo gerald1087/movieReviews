@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import Header from "./components/Header"
 import SearchResults from './SearchResults'
 
 
@@ -43,6 +43,7 @@ export default class MovieSearch extends Component {
         // const {results} = this.state
         return (
             <div>
+            <Header></Header>
                 <form>
                     <div className="form-group">
                         <label htmlFor="movieSearch">Movie Search</label>

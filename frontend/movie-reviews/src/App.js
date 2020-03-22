@@ -42,18 +42,17 @@ class App extends Component {
       <div className="App">
    <Router history={history}>        
    <Switch>
-          <Route 
-          exact 
-          path={"/"} 
-          render={props => (
+          <Route exact path={"/"} render={props => (
           <Home {...props} handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />)} />
-          <Route exact 
-          path={"/search"} 
-          render={props => (
+         
+          <Route exact path={"/search"}  render={props => (
           <MovieSearch {...props} handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />)} />
-          <Route exact path="/reviews" render={props => (<MovieReviews {...props} user={this.state.user} loggedIn={this.state.loggedIn}/>)} />
-        </Switch>
-        </Router>
+          
+          <Route exact path="/reviews" render={props => (
+          <MovieReviews {...props} user={this.state.user} loggedIn={this.state.loggedIn}/>)} />
+        
+    </Switch>
+    </Router>
       </div>
     );
   }
