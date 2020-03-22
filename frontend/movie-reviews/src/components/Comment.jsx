@@ -54,8 +54,7 @@ export default class Comment extends React.Component {
             });
             console.log("values", this.state.user_id, this.state.moviereview_id, this.state.comment_date);
   }
-      
-  
+
 
   render() {
     return (
