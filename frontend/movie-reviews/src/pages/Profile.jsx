@@ -73,6 +73,7 @@ class Profile extends Component {
                             </tr>
                         </tbody>
                     </table>
+                    <button> View All Comments</button>
                 </div>
             </div>
         );

@@ -13,7 +13,7 @@ export default class MoviesReviews extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:3005/api/movie_reviews/")
+        axios.get("http://localhost:3005/api/movie_reviews/${this.props.movie_reviews.id}")
             .then(({ data }) => {
                 this.setState({
                     results: data
