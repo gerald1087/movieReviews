@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Header from "./components/Header"
 import SearchResults from './SearchResults'
+import AuthHeader from './components/AuthHeader';
+import Footer from './layouts/Footer'
 
 
 export default class MovieSearch extends Component {
@@ -40,10 +41,11 @@ export default class MovieSearch extends Component {
         })
     }
     render() {
-        // const {results} = this.state
         return (
             <div>
-            <Header></Header>
+                <div>
+                    <AuthHeader />
+                </div>
                 <form>
                     <div className="form-group">
                         <label htmlFor="movieSearch">Movie Search</label>
@@ -51,15 +53,15 @@ export default class MovieSearch extends Component {
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={(event) => this.handleSubmit(event)} >Submit</button>
                 </form>
-                { this.state.results && 
-                    <SearchResults results={this.state.results} title={this.state.results.Title} image={this.state.results.Poster} year={this.state.results.Year} genre={this.state.results.Genre} plot={this.state.results.Plot}/>
-                    }
-{/* {results.map(result => (
-    <SearchResults title={result.Title} image={result.Poster} year={result.Year}/>
-))} */}
+                {this.state.results &&
+                    <SearchResults results={this.state.results} title={this.state.results.Title} image={this.state.results.Poster} year={this.state.results.Year} genre={this.state.results.Genre} plot={this.state.results.Plot} />
+                }
+                <footer>
+                    <Footer />
+                </footer>
 
-                </div>
-                )
-            }
+            </div>
+        )
+    }
 }
 

@@ -11,6 +11,9 @@ const User = db.user;
 const Comments = db.comments;
 const Movie_Reviews = db.reviews;
 
+Comments.belongsTo(Movie_Reviews, {foreignKey: 'moviereview_id'});
+Movie_Reviews.hasMany(Comments, {foreignKey: 'moviereview_id'});
+
 const app = express();
 
 app.use(express());
@@ -176,30 +179,30 @@ app.get('/api/comments', function (req, res) {
 });
 
 //GET 1 Comment //WORKING latest
-app.get('/api/comments/:id', function (req, res) {
-    let id = req.params.id;
+// app.get('/api/comments/:id', function (req, res) {
+//     let id = req.params.id;
   
 
-    Comments.findOne({ where: { id: id } })
-        .then((results) => {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(results));
-        })
-        .catch((e) => {
-            console.error(e);
-        });
-});
+//     Comments.findOne({ where: { id: id } })
+//         .then((results) => {
+//             res.setHeader('Content-Type', 'application/json');
+//             res.end(JSON.stringify(results));
+//         })
+//         .catch((e) => {
+//             console.error(e);
+//         });
+// });
 
 //GET comments by user / No longer works LATEST
-app.get('/api/comments/user/:id', function (req, res) {
-    let id = req.params.user_id;
+// app.get('/api/comments/user/:id', function (req, res) {
+//     let id = req.params.user_id;
 
-    Comments.findAll({include: [User]}).then((results) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(results));
-    });
+//     Comments.findAll({include: [User]}).then((results) => {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.end(JSON.stringify(results));
+//     });
 
-});
+// });
 //     db.query('SELECT * FROM comments JOIN users on comments.user_id = users.id WHERE users.id=$1', [id])
 //         .then((results) => {
 //             res.setHeader('Content-Type', 'application/json');
@@ -212,15 +215,15 @@ app.get('/api/comments/user/:id', function (req, res) {
 
 //GET comments by review //Not working latest***** comment box
 //Need to fix ***************************************************
-app.get('/api/comments/movie_reviews/:id', function (req, res) {
-    let id = req.params.id;
+// app.get('/api/comments/movie_reviews/:id', function (req, res) {
+//     let id = req.params.id;
 
-    Comments.findAll({include:[Movie-review] [Users]}).then((results) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(results));
-    });
+//     Comments.findAll({include:[Movie-review] [Users]}).then((results) => {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.end(JSON.stringify(results));
+//     });
 
-});
+// });
     // db.query('SELECT * FROM comments JOIN movie_reviews on comments.moviereview_id = movie_reviews.id Join users on comments.user_id = users.id" WHERE movie_reviews.id=$1', [id])
     //     .then((results) => {
     //         res.setHeader('Content-Type', 'application/json');
@@ -230,6 +233,19 @@ app.get('/api/comments/movie_reviews/:id', function (req, res) {
     //         console.error(e);
     //     });
 // });
+
+app.get('/api/comments/:id', function (req, res) {
+
+    let movieId = req.params.id
+
+    Comments.findAll({where: {moviereview_id: movieId}, include: [Movie_Reviews]}).then((results) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(results));
+    }).catch(function(e) {
+        console.log(e);
+        res.status(434).send('error retrieving reviews');
+    })
+});
 
 //POST Comments /Working LATEST
 app.post('/api/comments', function (req, res) {
