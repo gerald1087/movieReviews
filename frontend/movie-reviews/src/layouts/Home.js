@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Register from "../authorization/Register";
 import Login from "../authorization/Login";
 import Footer from "./Footer"
+import Header from "../components/Header"
 
 // import "./Home.css"
 
@@ -10,32 +10,27 @@ class Home extends Component {
         super(props);
 
         this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
-        this.handleSuccessfulRegistration = this.handleSuccessfulRegistration.bind(this);
     }
 
     handleSuccessfulLogin(data) {
         this.props.handleLogin(data);
-        this.props.history.push('/search');
-    }
-
-    handleSuccessfulRegistration(data) {
-        this.props.history.push('/');
+        this.props.history.push('/reviews');
     }
 
 
     render() {
         return (
-
             <div>
-                <h1>Status: {this.props.loggedIn}</h1>
-                <div className="register">
-                    <h3>Register</h3>
-                    <Register handleSuccessfulRegistration={this.handleSuccessfulRegistration} />
-                </div>
+                <Header/>
+                <h1>Welcome to Movie Talk!</h1>
                 <div className="login">
                     <h3>Login</h3>
                     <Login handleSuccessfulLogin={this.handleSuccessfulLogin} />
                 </div>
+                <div><p>
+                    Dont't have an account? Click <a href='/register'>here</a>!
+                    </p>
+                    </div>
                 <footer>
                     <Footer />
                 </footer>
