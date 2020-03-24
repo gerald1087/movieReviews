@@ -10,7 +10,7 @@ export default class Comment extends React.Component {
       item: '',
       CommentBox: [],
       comment_date: '',
-      user_id: '',
+      username: '',
       moviereview_id: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -42,17 +42,17 @@ export default class Comment extends React.Component {
     var apiBaseUrl = "http://localhost:3005/api/comments";
         var payload = {
             id: this.state.id,
+            moviereview_id: this.state.moviereview_id,
             user_id: this.state.user_id,
         }
         console.log(payload)
-        axios.post(apiBaseUrl + "moviereview", payload.moviereview_id)
+        axios.post(apiBaseUrl + "moviereview", payload)
             .then(function (response) {
                 console.log(response);
-                alert("Comment post failed!")
             }).catch(function (error) {
                 console.log(error);
             });
-            console.log("values", this.state.user_id, this.state.moviereview_id, this.state.comment_date);
+            console.log("values", this.state.user_id, this.state.username, this.state.comment_date);
   }
 
 
