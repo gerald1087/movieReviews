@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "cd frontend/movie-reviews && npm ci && npm run build"
+    "build": "npm install",
+    "heroku-postbuild": "cd frontend/movie-reviews && npm ci && npm run build"
   },
   "author": "",
   "license": "ISC",
