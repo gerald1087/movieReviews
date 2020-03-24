@@ -48,9 +48,6 @@ class MoviesReviews extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-
-
-
             <div style= {{backgroundColor: "rgb(250, 196, 114)"}}>
                 <div style= {{backgroundColor: "rgb(250, 196, 114)"}}>
                     <Card className={classes.root} style= {{backgroundColor: "rgb(266, 164, 57)"}}>
