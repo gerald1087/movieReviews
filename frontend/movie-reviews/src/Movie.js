@@ -48,6 +48,11 @@ class Movie extends React.Component {
             })
     }
 
+    handleClick(e) {
+        e.preventDefault()
+        alert('Available wherever videos are sold!')
+    }
+
     render() {
 
         const { classes } = this.props;
