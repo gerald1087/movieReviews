@@ -11,6 +11,9 @@ const User = db.user;
 const Comments = db.comments;
 const Movie_Reviews = db.reviews;
 
+Comments.belongsTo(Movie_Reviews, {foreignKey: 'moviereview_id'});
+Movie_Reviews.hasMany(Comments, {foreignKey: 'moviereview_id'});
+
 const app = express();
 
 app.use(express());
@@ -175,20 +178,6 @@ app.get('/api/comments', function (req, res) {
     })
 });
 
-//GET 1 Comment //WORKING latest
-app.get('/api/comments/:id', function (req, res) {
-    let id = req.params.id;
-  
-
-    Comments.findOne({ where: { id: id } })
-        .then((results) => {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(results));
-        })
-        .catch((e) => {
-            console.error(e);
-        });
-});
 
 //GET comments by user / No longer works LATEST
 app.get('/api/comments/user/:id', function (req, res) {
@@ -229,6 +218,19 @@ app.get('/api/comments/movie_reviews/:id', function (req, res) {
     //         console.error(e);
     //     });
 // });
+
+app.get('/api/comments/:id', function (req, res) {
+
+    let movieId = req.params.id
+
+    Comments.findAll({where: {moviereview_id: movieId}, include: [Movie_Reviews]}).then((results) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(results));
+    }).catch(function(e) {
+        console.log(e);
+        res.status(434).send('error retrieving reviews');
+    })
+});
 
 //POST Comments /Working LATEST
 app.post('/api/comments', function (req, res) {

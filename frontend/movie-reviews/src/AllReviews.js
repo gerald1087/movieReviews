@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import './AllReviews.css'
 
 const useStyles = (theme => ({
 
@@ -16,10 +17,8 @@ const useStyles = (theme => ({
         height: 200,
 
     },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+    date: {
+        align: 'right'
     },
     title: {
         fontSize: 14,
@@ -49,7 +48,6 @@ class AllReviews extends Component {
                     });
             });
     }
-
     render() {
         const { classes } = this.props;
         return (
@@ -61,7 +59,7 @@ class AllReviews extends Component {
                 
                     {this.state.review.map((review, index) => {
                         return (
-                            <Card className={classes.root} style= {{backgroundColor: "rgb(266, 164, 57)", display: "flex", flexDirection: 'row', padding: "3"}}>
+                            <Card key={index} {...review} className={classes.root} style= {{backgroundColor: "rgb(266, 164, 57)", display: "flex", flexDirection: 'row', padding: "3"}}>
 
                                 <CardContent>
                                     <Typography variant="h5" component="h2">
@@ -69,10 +67,10 @@ class AllReviews extends Component {
                                     </Typography>
                                     <br />
                                      <Typography variant="h5" component="h2">
-                                     {/* {{this.props.username}} */}
+                                     {this.props.user.username}
                                     </Typography>
                                     <br />
-                                    <Typography variant="h6" component="h6">
+                                    <Typography variant="subtitle2" className='date' >
                                         {review.createdAt} 
                                     </Typography>
                                 </CardContent>
