@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Header from "./components/Header"
 import SearchResults from './SearchResults'
+import AuthHeader from './components/AuthHeader';
+import Footer from './layouts/Footer'
 
 
 export default class MovieSearch extends Component {
@@ -11,6 +12,7 @@ export default class MovieSearch extends Component {
         this.state = {
             movie: "",
             results: [],
+            showResults:false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -37,29 +39,32 @@ export default class MovieSearch extends Component {
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value,
+            showResults: true
         })
     }
     render() {
-        // const {results} = this.state
         return (
             <div>
-            <Header></Header>
-                <form>
-                    <div className="form-group">
+                <div>
+                    <AuthHeader />
+                </div>
+                <form style= {{backgroundColor: "rgb(250, 196, 114)"}}>
+                    <div className="form-group" style= {{backgroundColor: "rgb(250, 196, 114)"}}>
                         <label htmlFor="movieSearch">Movie Search</label>
                         <input type="text" name="movie" className="form-control" id="movieSearchBar" value={this.state.movie} onChange={this.handleChange} />
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={(event) => this.handleSubmit(event)} >Submit</button>
+                
+                {this.state.results, this.state.showResults &&
+                    <SearchResults results={this.state.results} title={this.state.results.Title} image={this.state.results.Poster} year={this.state.results.Year} genre={this.state.results.Genre} plot={this.state.results.Plot} />
+                }
                 </form>
-                { this.state.results && 
-                    <SearchResults results={this.state.results} title={this.state.results.Title} image={this.state.results.Poster} year={this.state.results.Year} genre={this.state.results.Genre} plot={this.state.results.Plot}/>
-                    }
-{/* {results.map(result => (
-    <SearchResults title={result.Title} image={result.Poster} year={result.Year}/>
-))} */}
+                <footer>
+                    <Footer />
+                </footer>
 
-                </div>
-                )
-            }
+            </div>
+        )
+    }
 }
 

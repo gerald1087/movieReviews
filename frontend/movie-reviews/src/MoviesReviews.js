@@ -1,58 +1,94 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import Header from './components/Header'
-import history from './layouts/history';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
 
-export default class MoviesReviews extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            results: []
-        }
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+
+
+const useStyles = (theme => ({
+
+    root: {
+
+        width: 400,
+
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+}));
+
+class MoviesReviews extends React.Component {
+
+    viewClickHandler() {
+        this.props.history.push('/reviews/' + this.props.id)
     }
 
-    componentDidMount() {
-        axios.get("http://localhost:3005/api/movie_reviews/${this.props.movie_reviews.id}")
-            .then(({ data }) => {
-                this.setState({
-                    results: data
-                });
-            });
+    reviewClickHandler() {
+        this.props.history.push('/createreview/' + this.props.id)
+    }
+
+    seeReviewsClickHandler() {
+        this.props.history.push('/listreviews/' + this.props.id)
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <div>
-                <div>
-                    {this.state.results.map((result, index) => {
-                        return (
-                            <div>
-                         
-                            
-                            <div key={index} className="card" style={{ width: '18rem' }}>
-                                <img src={result.image} className="card-img-top" alt="..." />
-                         <div className="card-body">
 
-                        <h5 className="card-title">{result.genre}</h5>
-                                    <p className="card-text"></p>
 
-                        <h5 className="card-title">{result.title}</h5>
-                        <p className="card-text">{result.year}</p>
 
-                                    {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
-                                    
-                                </div>
-                                <Button size="small"onClick={() => history.push('/review')}>Review</Button>
-                                {/* Above needs to be click hanlde button to view that review page */}
-                                <Button size="small"onClick={() => history.push('/search')}>Go Back</Button>
-                            </div>
-                            </div>
-                        )
-                    })}
+            <div style= {{backgroundColor: "rgb(250, 196, 114)"}}>
+                <div style= {{backgroundColor: "rgb(250, 196, 114)"}}>
+                    <Card className={classes.root} style= {{backgroundColor: "rgb(266, 164, 57)"}}>
+                        <CardActionArea>
+                            <CardContent style= {{backgroundColor: "rgb(266, 164, 57)"}}>
+                                <img src={this.props.image} id="productimage" className="card-img-top" alt="..." />
+                                <Typography variant="h5" component="h2">
+                                    {this.props.title}
+                                </Typography>
+                                <Typography className={classes.pos} color="textSecondary">
+                                    Release Year: {this.props.year}
+                                </Typography>
+                            </CardContent>
+                            <Button variant="outlined" color="secondary" type="submit" onClick={this.viewClickHandler.bind(this)} >
+                                View
+                        </Button>
+                            <Button variant="outlined" color="secondary" type="submit" onClick={this.reviewClickHandler.bind(this)} >
+                                Leave Review
+                        </Button>
+                            <Button variant="outlined" color="secondary" type="submit" onClick={this.seeReviewsClickHandler.bind(this)} >
+                                See Reviews
+                        </Button>
+
+                        </CardActionArea>
+                    </Card>
 
                 </div>
+             
+               {/* <footer>
+
+               </footer> */}
+
+             
+
             </div>
+
         )
     }
 }
+
+export default compose(withRouter, withStyles(useStyles))(MoviesReviews)

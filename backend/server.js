@@ -211,11 +211,10 @@ app.get('/api/comments/user/:id', function (req, res) {
 // });
 
 //GET comments by review //Not working latest***** comment box
-//Need to fix ***************************************************
 app.get('/api/comments/movie_reviews/:id', function (req, res) {
     let id = req.params.id;
 
-    Comments.findAll({include:[Movie-review] [Users]}).then((results) => {
+    Comments.findAll({include:[Movie_reviews] [Users]}).then((results) => {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(results));
     });

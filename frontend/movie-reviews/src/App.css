@@ -1,17 +1,33 @@
 .App {
   text-align: center;
   background-color: rgb(250, 196, 114);
+  background-size: cover;
+  height: 100vh;
 }
+/* .tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #e69d9d;
+} */
 
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.card {
+  
+    background-color: rgb(250, 196, 114);
+    display: inline-flex;
+  
 }
-
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: rgb(250, 196, 114);
+}
 .App-header {
-  background-color: #222;
+  /* background-color: #222; */
+  /* background-color: rgb(250, 196, 114);
   height: 150px;
-  padding: 20px;
+  padding: 20px; */
   color: white;
 }
 
@@ -22,8 +38,25 @@
 .App-intro {
   font-size: large;
 }
+#bottom {
+  position: fixed; 
+  bottom: 8%;
+  text-align: center;
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
+}
+footer {
+  position: absolute; 
+  bottom: 0;
+  
+}
+
+#productimage {
+  width: 300px;
+  height: 350px
+}
+
+#footer1 {
+  position: absolute; 
+  bottom: 0;
+  
+}

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios'
+import Header from "../components/Header"
+import Footer from '../layouts/Footer'
 
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -70,6 +72,14 @@ class Register extends Component {
         const { classes } = this.props;
         return (
             <div>
+                <header>
+                <Header/>
+                </header>
+                <div>
+                    <h1>
+                        Register Here!
+                    </h1>
+                </div>
                 <form className={classes.root} noValidate autoComplete="off">
                     <div>
                         <TextField id="outlined-basic" label="Full Name" variant="outlined" name="name" type="name" className="form-control" value={this.state.name} onChange={this.handleChange} />
@@ -98,6 +108,9 @@ class Register extends Component {
                     </Button>
                     </div>
                 </form>
+                <footer>
+                    <Footer />
+                </footer>
             </div>
         )
     }
