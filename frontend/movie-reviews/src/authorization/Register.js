@@ -77,9 +77,15 @@ class Register extends Component {
                 </header>
                 <div>
                     <h1>
-                        Register Here!
+                        Register Here! 
                     </h1>
+                    <br />
+                    <h3>
+                    (It's Free)
+                    </h3>
+                    <br />
                 </div>
+                <div id="regi">
                 <form className={classes.root} noValidate autoComplete="off">
                     <div>
                         <TextField id="outlined-basic" label="Full Name" variant="outlined" name="name" type="name" className="form-control" value={this.state.name} onChange={this.handleChange} />
@@ -108,6 +114,7 @@ class Register extends Component {
                     </Button>
                     </div>
                 </form>
+                </div>
                 <footer>
                     <Footer />
                 </footer>

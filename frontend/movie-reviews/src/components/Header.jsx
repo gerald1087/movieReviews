@@ -13,7 +13,7 @@ class Header extends Component {
                 <div style={{ display: 'flex', flexFlow: 'column nowrap', alignItems: 'center', textAlign: 'center' }}>
                     <div>
                         <NavLink to="/" style={{ margin: '2em' }}>Home </NavLink>
-                        <NavLink to="/register" style={{ margin: '2em' }}>Register</NavLink>
+                        {/* <NavLink to="/register" style={{ margin: '2em' }}>Register</NavLink> */}
                     </div>
 
                 </div>

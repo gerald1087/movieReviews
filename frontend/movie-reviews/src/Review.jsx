@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route, Router } from "react-router-dom";
+// import { Switch, Route, Router } from "react-router-dom";
 import Header from './components/Header'
-import MovieSearch from "./MovieSearch"
+// import MovieSearch from "./MovieSearch"
 import Comment from "./components/Comment"
-import CommentBox from "./components/CommentBox"
+// import CommentBox from "./components/CommentBox"
 import MoviesReviews from './MoviesReviews';
 import Header from './components/Header';
 
