@@ -21,9 +21,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static('public'));
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'frontend/movie-reviews/build')));
 
 
 app.get('/*', (req, res) => {
@@ -300,15 +299,16 @@ app.delete('/api/deleteprofile/:id', (req, res) => {
 
     let userId = req.params.id
     
-        User.destroy({ where: { id: users.id } }).then(function (user) {
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(user));
-        }).catch(function (e) {
-            console.log(e, "server error message")
-            res.status(434).send('unable to delete user')
-        })
+    User.destroy({ where: { id: users.id } }).then(function (user) {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(user));
+    }).catch(function (e) {
+        console.log(e, "server error message")
+        res.status(434).send('unable to delete user')
+    })
     
-    });
+});
 
-app.listen(3005);
+const port = process.env.PORT || 3005
+app.listen(process.env.PORT);
 console.log('Movie Club is LIVE, 3005');
