@@ -50,11 +50,12 @@ class MoviesReviews extends React.Component {
         return (
 
 
-            <div>
-                <div>
-                    <Card className={classes.root}>
+
+            <div style= {{backgroundColor: "rgb(250, 196, 114)"}}>
+                <div style= {{backgroundColor: "rgb(250, 196, 114)"}}>
+                    <Card className={classes.root} style= {{backgroundColor: "rgb(266, 164, 57)"}}>
                         <CardActionArea>
-                            <CardContent>
+                            <CardContent style= {{backgroundColor: "rgb(266, 164, 57)"}}>
                                 <img src={this.props.image} id="productimage" className="card-img-top" alt="..." />
                                 <Typography variant="h5" component="h2">
                                     {this.props.title}
@@ -77,8 +78,12 @@ class MoviesReviews extends React.Component {
                     </Card>
 
                 </div>
-                <footer>
-                </footer>
+             
+               {/* <footer>
+
+               </footer> */}
+
+             
 
             </div>
 

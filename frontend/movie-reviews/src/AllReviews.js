@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import AuthHeader from "./components/AuthHeader"
 import Footer from './layouts/Footer'
-
+import './App.css'
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = (theme => ({
 
     root: {
-
+    
         width: 500,
         height: 200,
 
@@ -26,6 +26,7 @@ const useStyles = (theme => ({
     },
     pos: {
         marginBottom: 12,
+    
     },
 }));
 
@@ -57,17 +58,22 @@ class AllReviews extends Component {
                     <AuthHeader />
                 </div>
                 <div>
+                
                     {this.state.review.map((review, index) => {
                         return (
-                            <Card className={classes.root}>
+                            <Card className={classes.root} style= {{backgroundColor: "rgb(266, 164, 57)", display: "flex", flexDirection: 'row', padding: "3"}}>
 
                                 <CardContent>
                                     <Typography variant="h5" component="h2">
                                         {review.comment}
                                     </Typography>
                                     <br />
+                                     <Typography variant="h5" component="h2">
+                                     {/* {{this.props.username}} */}
+                                    </Typography>
+                                    <br />
                                     <Typography variant="h6" component="h6">
-                                        {review.createdAt}
+                                        {review.createdAt} 
                                     </Typography>
                                 </CardContent>
                             </Card>

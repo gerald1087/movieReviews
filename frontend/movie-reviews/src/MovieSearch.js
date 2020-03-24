@@ -12,6 +12,7 @@ export default class MovieSearch extends Component {
         this.state = {
             movie: "",
             results: [],
+            showResults:false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -38,6 +39,7 @@ export default class MovieSearch extends Component {
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value,
+            showResults: true
         })
     }
     render() {
@@ -46,16 +48,17 @@ export default class MovieSearch extends Component {
                 <div>
                     <AuthHeader />
                 </div>
-                <form>
-                    <div className="form-group">
+                <form style= {{backgroundColor: "rgb(250, 196, 114)"}}>
+                    <div className="form-group" style= {{backgroundColor: "rgb(250, 196, 114)"}}>
                         <label htmlFor="movieSearch">Movie Search</label>
                         <input type="text" name="movie" className="form-control" id="movieSearchBar" value={this.state.movie} onChange={this.handleChange} />
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={(event) => this.handleSubmit(event)} >Submit</button>
-                </form>
-                {this.state.results &&
+                
+                {this.state.results, this.state.showResults &&
                     <SearchResults results={this.state.results} title={this.state.results.Title} image={this.state.results.Poster} year={this.state.results.Year} genre={this.state.results.Genre} plot={this.state.results.Plot} />
                 }
+                </form>
                 <footer>
                     <Footer />
                 </footer>

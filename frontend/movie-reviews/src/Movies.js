@@ -39,15 +39,15 @@ class Movies extends React.Component {
                 <header>
                     <AuthHeader />
                 </header>
-                <div className="Movie">
+                <div className="Movie" style= {{display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: "20", backgroundColor: "rgb(250, 196, 114)"}}>
                     <Switch>
                         <Route exact path={'/reviews'} render={() => resultsJSX} />
                         <Route path={'/reviews/:id'} render={props => (<Movie {...props} user={this.state.user} />)} />
                     </Switch>
                 </div>
-                <footer>
+                {/* <footer>
                     <Footer />
-                </footer>
+                </footer> */}
             </div>
         )
     }

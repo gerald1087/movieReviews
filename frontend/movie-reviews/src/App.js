@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Router } from "react-router-dom";
 import history from './layouts/history';
-
+import './App.css';
 import MovieSearch from "./MovieSearch"
 import Home from "./layouts/Home";
 import CreateReview from "./CreateReview"

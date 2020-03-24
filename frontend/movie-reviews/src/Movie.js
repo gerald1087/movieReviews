@@ -58,8 +58,8 @@ class Movie extends React.Component {
                 <header>
                     <AuthHeader />
                 </header>
-                <div>
-                    <Card className={classes.root}>
+                <div style= {{backgroundColor: "rgb(250, 196, 114)"}}>
+                    <Card className={classes.root} style= {{backgroundColor: "rgb(266, 164, 57)", display: "flex"}}>
                         <CardActionArea>
                             <CardContent>
                                 <img src={this.state.image} id="productimage" className="card-img-top" alt="..." />
@@ -70,7 +70,7 @@ class Movie extends React.Component {
                                     Release Year: {this.state.year}
                                 </Typography>
                             </CardContent>
-                            <Button variant="outlined" color="secondary" type="submit" onClick={(event) => this.handleClick(event)} >
+                            <Button variant="outlined" color="secondary" type="submit" onClick={(event) => this.handleClick(event)} style= {{backgroundColor: "orange"}}>
                                 Buy Now!
                         </Button>
                         </CardActionArea>
@@ -78,9 +78,9 @@ class Movie extends React.Component {
                     <div>
                     </div>
                 </div>
-                <footer>
-                    <Footer />
-                </footer>
+                {/* <footer> */}
+                    {/* <Footer /> */}
+                {/* </footer> */}
             </div>
         )
     }

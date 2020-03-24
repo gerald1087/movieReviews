@@ -51,25 +51,25 @@ class CreateReview extends Component {
                 console.log(error);
             });
     }
-
+    compondentDidMount() {
+    
+    }
     render() {
         const { classes } = this.props;
         return (
             <div>
-                <div>
+                {/* <div> */}
                     <AuthHeader />
-                </div>
-                <form className={classes.root} noValidate autoComplete="off">
-                    <TextField id="outlined-basic" label="Review" variant="outlined" name="review" type="review" value={this.state.review} onChange={this.handleChange} />
-                </form>
-                <div>
-                    <Button variant="outlined" color="secondary" type="submit" onClick={(event) => this.handleClick(event)} >
+                {/* </div> */}
+                <form className={classes.root} noValidate autoComplete="off" style= {{backgroundColor: "rgb(250, 196, 114)", display: "flex"}}>
+                    <TextField id="outlined-basic" label="What's Your One-Line Take?" variant="outlined" name="review" type="review" value={this.state.review} onChange={this.handleChange} />
+                    <Button variant="outlined" color="secondary" type="submit" onClick={(event) => this.handleClick(event)} style= {{backgroundColor: "orange", height: "55px", width: "20px"}}>
                         Post
-                    </Button>
-                </div>
-                <footer>
+                    </Button></form>
+                
+                {/* <footer> */}
                     <Footer />
-                </footer>
+                {/* </footer> */}
             </div>
         )
     }

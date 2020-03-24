@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-
+// import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -50,7 +50,7 @@ class Login extends Component {
             .then(response => {
                 if (response.statusText === 'OK') {
                     this.props.handleSuccessfulLogin(response.data)
-                    alert('Welcome!')
+                    // alert('Welcome!')
                 }
 
             }).catch(error => {
